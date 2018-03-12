@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:top_headlines_app/ui/article_list_item.dart';
+import 'package:top_headlines_app/ui/article_list/article_list_item.dart';
 import 'package:top_headlines_app/model/article.dart';
 
 class ArticleList extends StatelessWidget {
@@ -12,6 +12,7 @@ class ArticleList extends StatelessWidget {
     return new ListView(
       padding: new EdgeInsets.symmetric(vertical: 8.0),
       children: _buildArticleList(),
+
     );
   }
 
@@ -20,5 +21,4 @@ class ArticleList extends StatelessWidget {
         .map((article) => new ArticleListItem(article))
         .toList();
   }
-
 }

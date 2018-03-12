@@ -165,5 +165,7 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# API
+/lib/api_key.dart
 
 # End of https://www.gitignore.io/api/dart,macos,androidstudio
