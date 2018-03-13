@@ -10,4 +10,5 @@ Flutter app with the Top Headlines News.
 - [url_launcher](https://pub.dartlang.org/packages/url_launcher)
 
 
-### [NewsAPI.org](https://newsapi.org)
+## Public API
+ - [powered by NewsAPI.org](https://newsapi.org)

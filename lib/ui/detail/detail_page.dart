@@ -4,7 +4,6 @@ import 'package:top_headlines_app/model/article.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
-  static const String routeName = "/detail";
   final Article _article;
 
   DetailPage(this._article);
@@ -52,14 +51,17 @@ class DetailPage extends StatelessWidget {
                     new Center(
                       child: _container(
                         new CachedNetworkImage(
-                          imageUrl: _article.urlToImage != null ? _article.urlToImage :"",
-                          errorWidget: new Icon(Icons.error),
+                          imageUrl: _article.urlToImage != null ? _article
+                              .urlToImage : "",
+                          errorWidget: new Text(""),
                         ),
 
                       ),
                     ),
                     _container(
-                        new Text(_article.description)
+                        new Text(_article.description != null
+                            ? _article.description
+                            : "")
                     ),
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.center,
