@@ -16,7 +16,7 @@ class Article {
       this.publishedAt,
       this.source});
 
-  Article.map(Map<String, dynamic> map)
+  Article.map(Map<dynamic, dynamic> map)
       : author = map["author"],
         title = map["title"],
         description = map["description"],
@@ -27,12 +27,12 @@ class Article {
 }
 
 class Source {
-  final int id;
+  final String id;
   final String name;
 
   Source({this.id, this.name});
 
-  Source.map(Map<String, dynamic> map)
+  Source.map(Map<dynamic, dynamic> map)
       : id = map['id'],
         name = map['name'];
 }

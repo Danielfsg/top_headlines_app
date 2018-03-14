@@ -19,11 +19,11 @@ class CategoryType {
 
 class NetworkData {
   final String _apiKey = API.apiKey; // your api key here
-  final String _country = "pt";
+  final String _country = "us";
   final JsonDecoder _decoder = new JsonDecoder();
-  List data;
+  List _data;
 
-  Future<dynamic> request(String url) {
+  Future<dynamic> _request(String url) {
     return http.get(url).then((http.Response response) {
       final String res = response.body;
       final int statusCode = response.statusCode;
@@ -36,20 +36,22 @@ class NetworkData {
   }
 
   Future<List<Article>> fetchTopHeadlines() {
-    return request(
+    return _request(
         "https://newsapi.org/v2/top-headlines?country=$_country&apiKey=$_apiKey")
         .then((dynamic res) {
-      data = res['articles'];
-      return data.map((obj) => new Article.map(obj)).toList();
+      _data = res['articles'];
+      return _data.map((obj) => new Article.map(obj)).toList();
     });
   }
 
-  Future<List<Article>> fetchTopHeadlinesByCategory(var category) {
-    return request(
-        "https://newsapi.org/v2/top-headlines?country=$_country&category=$category&apiKey=$_apiKey")
+  Future<List<Article>> fetchTopHeadlinesByCategory(var country,var category) {
+    return _request(
+        "https://newsapi.org/v2/top-headlines?country=$country&category=$category&apiKey=$_apiKey")
         .then((dynamic res) {
-      data = res['articles'];
-      return data.map((obj) => new Article.map(obj)).toList();
+      _data = res['articles'];
+      print(_data);
+      return _data.map((obj) => new Article.map(obj)).toList();
     });
   }
+
 }

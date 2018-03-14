@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:top_headlines_app/model/article.dart';
+import 'package:top_headlines_app/utils/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetailPage extends StatelessWidget {
@@ -32,8 +33,7 @@ class DetailPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         _container(
-                          new Text(_article.publishedAt.substring(0, 10) + " " +
-                              _article.publishedAt.substring(11, 16),
+                          new Text(Utils.formatDate(_article.publishedAt),
                               style: new TextStyle(
                                   fontSize: 11.0,
                                   fontStyle: FontStyle.italic)
@@ -68,7 +68,7 @@ class DetailPage extends StatelessWidget {
                       children: <Widget>[
                         _container(
                             new FlatButton(
-                                child: new Text("Link para a notícia completa",
+                                child: new Text("Link",
                                   style: new TextStyle(
                                       decoration: TextDecoration.underline),),
                                 onPressed: () => _launchInBrowser(_article.url)
