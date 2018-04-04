@@ -4,11 +4,11 @@ description: An application with Top headlines news.
 dependencies:
   flutter:
     sdk: flutter
-  cached_network_image: "^0.3.0"
+
+  shared_preferences: "^0.4.0"
   url_launcher: "^3.0.0"
   progress_hud: "^0.2.2"
   connectivity: "^0.3.0"
-
 
 
   # The following adds the Cupertino Icons font to your application.

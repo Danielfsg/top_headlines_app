@@ -5,10 +5,10 @@ import 'package:progress_hud/progress_hud.dart';
 import 'package:top_headlines_app/data/network_data.dart';
 import 'package:top_headlines_app/model/article.dart';
 import 'package:top_headlines_app/ui/article_list/article_list.dart';
+import 'package:top_headlines_app/utils/constants.dart';
 import 'package:top_headlines_app/utils/utils.dart';
 
 class ArticlesPage extends StatefulWidget {
-
   final String category;
 
   ArticlesPage(this.category);
@@ -37,24 +37,27 @@ class _ArticlePageState extends State<ArticlesPage> {
         ),
         body: new Builder(builder: (context) {
           return (!_loading)
-              ? new Container(child: new ArticleList(_list),)
+              ? new Container(
+                  child: new ArticleList(_list),
+                )
               : new Container(
-            child: new Center(
-                child: new ProgressHUD(
-                  backgroundColor: Colors.black12,
-                  color: Colors.white,
-                  containerColor: Colors.blue,
-                  borderRadius: 5.0,
-                )),
-          );
-        })
-    );
+                  child: new Center(
+                      child: new ProgressHUD(
+                    backgroundColor: Colors.black12,
+                    color: Colors.white,
+                    containerColor: Colors.blue,
+                    borderRadius: 5.0,
+                  )),
+                );
+        }));
   }
 
   _fetchData() async {
     Completer<Null> completer = new Completer<Null>();
 
-    _network.fetchTopHeadlinesByCategory("gb", widget.category).then((obj) {
+    _network
+        .fetchTopHeadlinesByCategory(country.keys.elementAt(0), widget.category)
+        .then((obj) {
       setState(() {
         _loading = false;
         _list = obj;
@@ -64,5 +67,4 @@ class _ArticlePageState extends State<ArticlesPage> {
 
     return completer.future;
   }
-
 }

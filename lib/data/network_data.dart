@@ -1,25 +1,12 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:http/http.dart' as http;
 
+import 'package:http/http.dart' as http;
 import 'package:top_headlines_app/api_key.dart';
 import 'package:top_headlines_app/model/article.dart';
 
-class CategoryType {
-  static List<String> category = [
-    "business",
-    "entertainment",
-    "general",
-    "health",
-    "science",
-    "sports",
-    "technology"
-  ];
-}
-
 class NetworkData {
-  final String _apiKey = API.apiKey; // your api key here
-  final String _country = "us";
+  final String _apiKey = API_KEY; // your api key here
   final JsonDecoder _decoder = new JsonDecoder();
   List _data;
 
@@ -35,23 +22,22 @@ class NetworkData {
     });
   }
 
-  Future<List<Article>> fetchTopHeadlines() {
+  Future<List<Article>> fetchTopHeadlines(var country) {
     return _request(
-        "https://newsapi.org/v2/top-headlines?country=$_country&apiKey=$_apiKey")
+            "https://newsapi.org/v2/top-headlines?country=$country&apiKey=$_apiKey")
         .then((dynamic res) {
       _data = res['articles'];
       return _data.map((obj) => new Article.map(obj)).toList();
     });
   }
 
-  Future<List<Article>> fetchTopHeadlinesByCategory(var country,var category) {
+  Future<List<Article>> fetchTopHeadlinesByCategory(var country, var category) {
     return _request(
-        "https://newsapi.org/v2/top-headlines?country=$country&category=$category&apiKey=$_apiKey")
+            "https://newsapi.org/v2/top-headlines?country=$country&category=$category&apiKey=$_apiKey")
         .then((dynamic res) {
       _data = res['articles'];
       print(_data);
       return _data.map((obj) => new Article.map(obj)).toList();
     });
   }
-
 }

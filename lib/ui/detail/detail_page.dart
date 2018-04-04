@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:top_headlines_app/model/article.dart';
 import 'package:top_headlines_app/utils/utils.dart';
@@ -22,74 +21,56 @@ class DetailPage extends StatelessWidget {
                 child: new Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    _container(
-                        new Text(_article.title,
-                          style: new TextStyle(
-                              fontSize: 20.0,
-                              fontWeight: FontWeight.bold),
-                        )
-                    ),
+                    _container(new Text(
+                      _article.title,
+                      style: new TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    )),
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         _container(
                           new Text(Utils.formatDate(_article.publishedAt),
                               style: new TextStyle(
-                                  fontSize: 11.0,
-                                  fontStyle: FontStyle.italic)
-                          ),
+                                  fontSize: 11.0, fontStyle: FontStyle.italic)),
                         ),
-                        _container(
-                            new Text(_article.source.name.toLowerCase(),
-                                style: new TextStyle(
-                                    fontSize: 12.0,
-                                    fontStyle: FontStyle.italic)
-                            )
-                        )
+                        _container(new Text(_article.source.name.toLowerCase(),
+                            style: new TextStyle(
+                                fontSize: 12.0, fontStyle: FontStyle.italic)))
                       ],
                     ),
                     new Center(
-                      child: _container(
-                        new CachedNetworkImage(
-                          imageUrl: _article.urlToImage != null ? _article
-                              .urlToImage : "",
-                          errorWidget: new Text(""),
-                        ),
-
-                      ),
+                      child: _container(new Image.network(
+                          _article.urlToImage != null
+                              ? _article.urlToImage
+                              : "")),
                     ),
-                    _container(
-                        new Text(_article.description != null
-                            ? _article.description
-                            : "")
-                    ),
+                    _container(new Text(_article.description != null
+                        ? _article.description
+                        : "")),
                     new Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        _container(
-                            new FlatButton(
-                                child: new Text("Link",
-                                  style: new TextStyle(
-                                      decoration: TextDecoration.underline),),
-                                onPressed: () => _launchInBrowser(_article.url)
-                            )
-                        ),
+                        _container(new FlatButton(
+                            child: new Text(
+                              "Link para a notícia completa",
+                              style: new TextStyle(
+                                  decoration: TextDecoration.underline),
+                            ),
+                            onPressed: () => _launchInBrowser(_article.url))),
                       ],
                     ),
-
                   ],
                 ),
               ),
             ],
           ),
-        )
-    );
+        ));
   }
 
   Widget _container(Widget child) {
     return new Container(
-      margin: new EdgeInsets.symmetric(
-          vertical: 4.0, horizontal: 8.0),
+      margin: new EdgeInsets.symmetric(vertical: 4.0, horizontal: 8.0),
       child: child,
     );
   }

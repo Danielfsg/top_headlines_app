@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Article {
   final String author;
   final String title;
@@ -35,4 +37,11 @@ class Source {
   Source.map(Map<dynamic, dynamic> map)
       : id = map['id'],
         name = map['name'];
+}
+
+class Choice {
+  final String title;
+  final IconData icon;
+
+  const Choice({this.title, this.icon});
 }
